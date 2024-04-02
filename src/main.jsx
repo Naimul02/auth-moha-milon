@@ -6,29 +6,33 @@ import Root from "./component/Root";
 import Home from "./component/Home";
 import Login from "./component/Login";
 import Register from "./component/Register";
+import AuthProvider from "./providers/AuthProvider";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    children : [
+    children: [
       {
-        path : '/',
-        element : <Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path : '/login',
-        element : <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path : '/register',
-        element : <Register></Register>
-      }
-    ]
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      {/* AuthProvider er bhitore jetai thakouk na keno take amra children hisebe paite pari */}
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
