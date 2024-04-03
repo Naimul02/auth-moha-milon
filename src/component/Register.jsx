@@ -20,6 +20,7 @@ const Register = () => {
         console.error(error);
       });
   };
+  
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col">
@@ -79,6 +80,7 @@ const Register = () => {
               <button className="btn btn-link">Login</button>
             </Link>
           </p>
+          
         </div>
       </div>
     </div>
