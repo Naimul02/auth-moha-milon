@@ -11,16 +11,20 @@ import {
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signInUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const logOut = () =>{
-      return signOut(auth);
-  }
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
   /**
    * onAuthStateChange ---> eta observe kore thake user login kora ache naki logout hoye geche naki registration korche ei full jinis ta k se 
@@ -29,6 +33,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
       console.log(
         "observing current user inside useEffect of AuthProvider : ",
         currentUser
@@ -45,7 +50,8 @@ const AuthProvider = ({ children }) => {
     user,
     createUser,
     signInUser,
-    logOut
+    logOut,
+    loading,
   };
 
   return (
