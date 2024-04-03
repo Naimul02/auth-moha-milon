@@ -49,6 +49,7 @@ const AuthProvider = ({ children }) => {
     });
 
     // tumi jodi kono karone ar observe korte na caw sekhetre nicher eta use korte paro.
+    // eta use kora hoy karon : jokhon component ta ekhan theke unmount hoy orthat tumi jodi  ei page theke cole jaw tokhon ar oi jaygay observe korar dorkar pore na. tokhon ei clean up ei ongso ta kora hoy orthat amar ar observe korar dorkar porbe na.
     return () => {
       unSubscribe();
     };
